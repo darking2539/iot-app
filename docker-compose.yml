@@ -1,6 +1,7 @@
 version: "3.7"
 services:
   database:
+    container_name: mongodb
     image: mongo:6-jammy
     ports:
       - 27017:27017
@@ -8,6 +9,33 @@ services:
       - MONGO_INITDB_ROOT_USERNAME=admin
       - MONGO_INITDB_ROOT_PASSWORD=password
       - MONGO_INITDB_DATABASE=test
+    networks:
+      - backend
     volumes:
       - /tmp/mongo-data:/data/db
       
+  server:
+    container_name: iot-server
+    image: iot-server
+    build: ./server
+    environment:
+      - MONGODB_URI=mongodb://admin:password@mongodb:27017/admin
+      - APP_PORT=8080
+      - JWT_SECRET_KEY=seckreykey
+    networks:
+      - backend
+    ports:
+      - "8080:8080"
+
+  client:
+    container_name: iot-react
+    image: iot-react
+    build: ./client
+    networks:
+      - backend
+    ports:
+      - "80:80"
+
+networks:
+  backend:
+    driver: bridge
