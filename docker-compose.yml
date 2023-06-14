@@ -12,7 +12,7 @@ services:
     networks:
       - backend
     volumes:
-      - /tmp/mongo-data:/data/db
+      - dbdata:/data/db
       
   server:
     container_name: iot-server
@@ -35,6 +35,9 @@ services:
       - backend
     ports:
       - "80:80"
+
+volumes:
+  dbdata: 
 
 networks:
   backend:
