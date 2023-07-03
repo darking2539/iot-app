@@ -32,4 +32,4 @@ spec:
             defaultMode: 0777
         - name: homeassist-persistent-storage
           persistentVolumeClaim:
-            claimName: homeassist-pv-claim
+            claimName: homeassistant-pvc
