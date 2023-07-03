@@ -22,14 +22,16 @@ spec:
           volumeMounts:
             - mountPath: "/config"
               name: homeassist-persistent-storage
-            - mountPath: "/config/configuration.yaml"
-              subPath: "configuration.yaml"
+            - mountPath: "/config/"
               name: homeassist-config
       volumes:
         - name: homeassist-config
-          secret:
-            secretName: homeassist-config
+          configMap:
+            name: nginx-config
             defaultMode: 0777
+            items: 
+             - key: configuration.yaml
+               path: configuration.yaml
         - name: homeassist-persistent-storage
           persistentVolumeClaim:
             claimName: homeassistant-pvc
