@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: client-iot
+  namespace: iot-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: client-iot
+  template:
+    metadata:
+      labels:
+        app: client-iot
+    spec:
+      containers:
+        - name: client-iot
+          image: ghcr.io/darking2539/iot-app-client:latest
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 80
