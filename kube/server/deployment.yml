@@ -16,6 +16,7 @@ spec:
       containers:
         - name: server-iot
           image: ghcr.io/darking2539/iot-app-server:latest
+          imagePullPolicy: Always
           ports:
             - name: http
               containerPort: 8080
