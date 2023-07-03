@@ -27,7 +27,7 @@ spec:
       volumes:
         - name: homeassist-config
           configMap:
-            name: nginx-config
+            name: homeassistant-config
             defaultMode: 0777
             items: 
              - key: configuration.yaml
