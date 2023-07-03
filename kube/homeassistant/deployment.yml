@@ -20,9 +20,7 @@ spec:
             - name: http
               containerPort: 8123
           volumeMounts:
-            - mountPath: "/config"
-              name: homeassist-persistent-storage
-            - mountPath: "/config/"
+            - mountPath: "/config/configuration.yaml"
               name: homeassist-config
       volumes:
         - name: homeassist-config
