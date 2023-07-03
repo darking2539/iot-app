@@ -20,16 +20,16 @@ spec:
             - name: http
               containerPort: 8123
           volumeMounts:
+            - mountPath: "/config"
+              name: homeassist-persistent-storage
             - mountPath: "/config/configuration.yaml"
+              subPath: "configuration.yaml"
               name: homeassist-config
       volumes:
         - name: homeassist-config
-          configMap:
-            name: homeassistant-config
+          secret:
+            secretName: homeassist-config
             defaultMode: 0777
-            items: 
-             - key: configuration.yaml
-               path: configuration.yaml
         - name: homeassist-persistent-storage
           persistentVolumeClaim:
             claimName: homeassistant-pvc
