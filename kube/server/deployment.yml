@@ -24,6 +24,6 @@ spec:
             - name: MONGODB_URI
               value: mongodb://admin:password@mongodb.iot-app.svc.cluster.local:27017/admin
             - name: APP_PORT
-              value: 8080
+              value: "8080"
             - name: JWT_SECRET_KEY
               value: seckreykey
