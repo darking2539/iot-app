@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: server-iot
+  namespace: iot-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: server-iot
+  template:
+    metadata:
+      labels:
+        app: server-iot
+    spec:
+      containers:
+        - name: server-iot
+          image: ghcr.io/darking2539/iot-app-server:latest
+          ports:
+            - name: http
+              containerPort: 8080
+          env:
+            - name: MONGODB_URI
+              value: mongodb://admin:password@mongodb.iot-app.svc.cluster.local:27017/admin
+            - name: APP_PORT
+              value: 8080
+            - name: JWT_SECRET_KEY
+              value: seckreykey
