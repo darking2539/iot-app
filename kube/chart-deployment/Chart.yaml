@@ -1,0 +1,20 @@
+apiVersion: v2
+appVersion: 0.1.0
+description: A Helm chart for Kubernetes
+name: prototype-gitops-repo
+type: application
+version: 0.1.0
+
+dependencies:
+  - alias: core-api
+    repository: https://reghbpr02.true.th/chartrepo/library
+    name: itsd-webapp
+    version: 1.2.0
+  - alias: web-console
+    repository: https://reghbpr02.true.th/chartrepo/library
+    name: itsd-webapp
+    version: 1.2.0
+  - alias: report-cronjob
+    repository: https://reghbpr02.true.th/chartrepo/library
+    name: itsd-cronjob
+    version: 1.2.0
