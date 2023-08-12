@@ -1,0 +1,48 @@
+##############################
+# Application Common Settings
+#
+# This settings are common for using for every environments
+# values can be replace with variants or environments settings
+#
+# Example:
+# - Image pull seccret name
+# - Image name
+# - External service configuration
+#
+##############################
+
+client:
+  image:
+    name: ghcr.io/darking2539/iot-app-client
+    tag: latest
+  env:
+  replicaCount: 1
+  containerPorts:
+    http: 80
+  service:
+    enabled: true
+    ports:
+      http: 80
+  ingress:
+    enabled: true
+    hostname: iot-client.abosszz.com
+
+server:
+  image:
+    name: ghcr.io/darking2539/iot-app-server
+    tag: latest
+  env:
+    APP_PORT: 8080
+    MONGODB_URI: mongodb://admin:password@localhost:27017/admin
+    JWT_SECRET_KEY: seckreykey
+  replicaCount: 1
+  containerPorts:
+    http: 8080
+  service:
+    enabled: true
+    ports:
+      http: 8080
+  ingress:
+    enabled: true
+    hostname: iot-server.abosszz.com
+
